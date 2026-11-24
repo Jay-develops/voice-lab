@@ -1,0 +1,80 @@
+name: Voice lab
+
+# Speaks one script (voicelab/<script>.json) with free voices, line by line, for a video that is made by hand
+# elsewhere. Nothing is posted: the takes are saved as one downloadable artifact.
+# "parts" splits the script by line-id prefix (e.g. "j,h,b") and voices each part in its own parallel job.
+on:
+  workflow_dispatch:
+    inputs:
+      script:
+        description: "script file in voicelab/ (name without .json)"
+        default: "batch2"
+      parts:
+        description: "line-id prefixes to voice in parallel, comma separated (blank: one job for all lines)"
+        default: ""
+
+jobs:
+  plan:
+    runs-on: ubuntu-latest
+    outputs:
+      parts: ${{ steps.p.outputs.parts }}
+    steps:
+      - id: p
+        env:
+          PARTS: ${{ inputs.parts }}
+        run: |
+          python3 -c "import json, os; p = [x.strip() for x in os.environ['PARTS'].split(',') if x.strip()] or ['*']; print('parts=' + json.dumps(p))" >> "$GITHUB_OUTPUT"
+
+  voices:
+    needs: plan
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    strategy:
+      fail-fast: false
+      matrix:
+        part: ${{ fromJSON(needs.plan.outputs.parts) }}
+    env:
+      PART: ${{ matrix.part }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Kokoro voices
+        run: |
+          if python -c "import json, sys; sys.exit(0 if json.load(open('voicelab/${{ inputs.script }}.json'))['kokoro'] else 1)"; then
+            sudo apt-get update -qq && sudo apt-get install -y -qq espeak-ng
+            pip install -q torch --index-url https://download.pytorch.org/whl/cpu
+            pip install -q "kokoro>=0.9.4" soundfile numpy
+            python voicelab/make.py voicelab/${{ inputs.script }}.json kokoro
+          else
+            echo "No Kokoro voices in this script."
+          fi
+      - name: Chatterbox voice
+        continue-on-error: true
+        timeout-minutes: 50
+        run: |
+          python -m venv /tmp/cb
+          /tmp/cb/bin/pip install -q torch==2.6.0 torchaudio==2.6.0 --index-url https://download.pytorch.org/whl/cpu
+          /tmp/cb/bin/pip install -q chatterbox-tts
+          /tmp/cb/bin/python voicelab/make.py voicelab/${{ inputs.script }}.json chatterbox
+      - name: Comparison clip
+        if: ${{ matrix.part == '*' }}
+        run: |
+          pip install -q numpy
+          python voicelab/make.py voicelab/${{ inputs.script }}.json compare
+      - uses: actions/upload-artifact@v4
+        with:
+          name: part-${{ inputs.script }}-${{ strategy.job-index }}
+          path: voicelab/out
+
+  bundle:
+    needs: voices
+    if: ${{ always() }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/upload-artifact/merge@v4
+        with:
+          name: voices-${{ inputs.script }}
+          pattern: part-${{ inputs.script }}-*
+          delete-merged: true
