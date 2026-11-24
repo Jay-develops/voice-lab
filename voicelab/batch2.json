@@ -1,0 +1,159 @@
+{
+ "title": "Batch 2: lightning, deepest ocean, no sleep",
+ "kokoro": [],
+ "chatterbox": [
+  [
+   "chatterbox",
+   0.6,
+   0.4
+  ]
+ ],
+ "lines": [
+  {
+   "id": "l01",
+   "say": "You just got struck by lightning.",
+   "exaggeration": 0.8,
+   "cfg": 0.3
+  },
+  {
+   "id": "l02",
+   "say": "Quick, guess how hot that bolt was.",
+   "exaggeration": 0.8,
+   "cfg": 0.3
+  },
+  {
+   "id": "l03",
+   "say": "Five times hotter than the surface of the Sun.",
+   "exaggeration": 0.7,
+   "cfg": 0.35
+  },
+  {
+   "id": "l04",
+   "say": "Up to a billion volts, in a single flash."
+  },
+  {
+   "id": "l05",
+   "say": "Some of it races over your skin, instead of through you."
+  },
+  {
+   "id": "l06",
+   "say": "It can leave a pattern like a fern on your skin."
+  },
+  {
+   "id": "l07",
+   "say": "And here's the surprise: about nine out of ten people survive.",
+   "exaggeration": 0.7,
+   "cfg": 0.35
+  },
+  {
+   "id": "l08",
+   "say": "One park ranger was struck seven times, and lived through every one."
+  },
+  {
+   "id": "l09",
+   "say": "The worst place to be is out in the open, or under a tree. A car with a metal roof is safer."
+  },
+  {
+   "id": "l10",
+   "say": "How close has lightning ever come to you?"
+  },
+  {
+   "id": "o01",
+   "say": "You're sinking to the deepest point on Earth.",
+   "exaggeration": 0.8,
+   "cfg": 0.3
+  },
+  {
+   "id": "o02",
+   "say": "The first people to go down took a submarine. Guess how long the trip took. Answer at the end.",
+   "exaggeration": 0.8,
+   "cfg": 0.3
+  },
+  {
+   "id": "o03",
+   "say": "It's eleven kilometres down. Mount Everest would fit, with two kilometres to spare."
+  },
+  {
+   "id": "o04",
+   "say": "By two hundred metres, it's twilight. By a thousand, there's no sunlight at all."
+  },
+  {
+   "id": "o05",
+   "say": "The only light comes from animals that glow.",
+   "exaggeration": 0.7,
+   "cfg": 0.35
+  },
+  {
+   "id": "o06",
+   "say": "The water is just above freezing."
+  },
+  {
+   "id": "o07",
+   "say": "And the pressure is over a thousand times stronger. Like an elephant standing on your thumb.",
+   "exaggeration": 0.7,
+   "cfg": 0.35
+  },
+  {
+   "id": "o08",
+   "say": "In 1960, two men rode a submarine down here. On the way, a window cracked."
+  },
+  {
+   "id": "o09",
+   "say": "It took them almost five hours to reach the bottom.",
+   "exaggeration": 0.7,
+   "cfg": 0.35
+  },
+  {
+   "id": "o10",
+   "say": "Would you make that trip? Yes or no?"
+  },
+  {
+   "id": "s01",
+   "say": "You decide to stop sleeping.",
+   "exaggeration": 0.8,
+   "cfg": 0.3
+  },
+  {
+   "id": "s02",
+   "say": "In 1964, a seventeen-year-old really did it. Guess how many days he lasted.",
+   "exaggeration": 0.8,
+   "cfg": 0.3
+  },
+  {
+   "id": "s03",
+   "say": "Day two: he couldn't say simple tongue-twisters, or tell what things were just by touch."
+  },
+  {
+   "id": "s04",
+   "say": "Day three: he felt sick every single morning."
+  },
+  {
+   "id": "s05",
+   "say": "Day five: he started seeing things that weren't there.",
+   "exaggeration": 0.7,
+   "cfg": 0.35
+  },
+  {
+   "id": "s06",
+   "say": "He was forgetting things, and snapping at people."
+  },
+  {
+   "id": "s07",
+   "say": "He lasted eleven days. Two hundred and sixty-four hours. A world record.",
+   "exaggeration": 0.7,
+   "cfg": 0.35
+  },
+  {
+   "id": "s08",
+   "say": "Then he slept for fourteen hours straight."
+  },
+  {
+   "id": "s09",
+   "say": "Guinness stopped accepting this record. It's too dangerous."
+  },
+  {
+   "id": "s10",
+   "say": "What's the longest you've ever stayed awake?"
+  }
+ ]
+}
